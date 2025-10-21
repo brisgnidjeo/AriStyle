@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AriStyle - Connexion entre Stylistes et Clients</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav>
+      <a href="#" class="logo">AriStyle</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <input type="search" class="search-bar" placeholder="Rechercher...">
+
+      <div class="nav-icons">
+        <button class="icon-btn">
+          <i class="bi bi-cart-fill"></i>
+          <span class="cart-badge">3</span>
+        </button>
+        <button class="icon-btn">
+          <i class="bi bi-person-circle"></i>
+        </button>
+      </div>
+    </nav>
+
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="accueil">
+    <div class="hero-content">
+      <h1>Votre Style, Notre Passion</h1>
+      <p>Découvrez des créations uniques réalisées par des stylistes talentueux.
+        Personnalisez vos tenues et exprimez votre individualité.</p>
+      <div class="cta-buttons">
+        <a href="collections.html" class="btn btn-primary">Explorer les Collections</a>
+        <a href="collections.html#traditionnelle" class="btn btn-secondary">Découvrir Nos Creations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+    rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+  <section class="offres">
+    <h2 class="section-title">Nos Offres</h2>
+    <div class="offres-container">
+      <div class="offre-card">
+        <div class="offre-icon">
+          <i class="fas fa-cut"></i>
+        </div>
+        <h3>Stylisme sur mesure</h3>
+        <p>Confection personnalisée adaptée à votre morphologie et à vos envies.</p>
+      </div>
+
+      <div class="offre-card">
+        <div class="offre-icon">
+          <i class="bi bi-palette-fill"></i>
+        </div>
+        <h3>Conseil en image</h3>
+        <p>Nos experts vous aident à révéler votre style unique et confiant.</p>
+      </div>
+
+      <div class="offre-card">
+        <div class="offre-icon">
+          <i class="fas fa-gem"></i>
+        </div>
+        <h3>Accessoires exclusifs</h3>
+        <p>Découvrez notre gamme d'accessoires chic pour sublimer vos tenues.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== COLLECTIONS EN VEDETTE ===================== -->
+  <section class="section" id="collections">
+    <h2 class="section-title">Collections en Vedette</h2>
+
+    <div class="collections-grid">
+
+      <!-- Robes de Soirée -->
+      <a href="collections.html#robe" class="collection-card">
+        <div class="collection-image">
+          <img src="assets/images/robe1.jfif" alt="Robes de Soirée">
+          <div class="collection-overlay">Voir Détails</div>
+        </div>
+        <div class="collection-info">
+          <h3>Robes de Soirée</h3>
+          <p>Élégance et sophistication pour vos événements spéciaux.</p>
+          <span class="price-tag">À partir de 45 000 FCFA</span>
+          <div class="rating">
+            <i class="fa-solid fa-circle-check verified"></i>
+            <span>128 avis clients vérifiés</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Costumes -->
+      <a href="collections.html#costume" class="collection-card">
+        <div class="collection-image">
+          <img src="assets/images/costume1.jfif" alt="Costumes Sur Mesure">
+          <div class="collection-overlay">Voir Détails</div>
+        </div>
+        <div class="collection-info">
+          <h3>Costumes Sur Mesure</h3>
+          <p>Confection de qualité pour hommes d'affaires et cérémonies.</p>
+          <span class="price-tag">À partir de 65 000 FCFA</span>
+          <div class="rating">
+            <i class="fa-solid fa-circle-check verified"></i>
+            <span>95 avis clients vérifiés</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tenues Traditionnelles -->
+      <a href="collections.html#traditionnelle" class="collection-card">
+        <div class="collection-image">
+          <img src="assets/images/tradition1.jfif" alt="Tenues Traditionnelles">
+          <div class="collection-overlay">Voir Détails</div>
+        </div>
+        <div class="collection-info">
+          <h3>Tenues Traditionnelles</h3>
+          <p>Authenticité et modernité dans nos créations africaines.</p>
+          <span class="price-tag">À partir de 35 000 FCFA</span>
+          <div class="rating">
+            <i class="fa-solid fa-circle-check verified"></i>
+            <span>156 avis clients vérifiés</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Mode Casual -->
+      <a href="collections.html#casual" class="collection-card">
+        <div class="collection-image">
+          <img src="assets/images/casual1.jfif" alt="Mode Casual">
+          <div class="collection-overlay">Voir Détails</div>
+        </div>
+        <div class="collection-info">
+          <h3>Mode Casual</h3>
+          <p>Confort et style pour le quotidien.</p>
+          <span class="price-tag">À partir de 25 000 FCFA</span>
+          <div class="rating">
+            <i class="fa-solid fa-circle-check verified"></i>
+            <span>203 avis clients vérifiés</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>AriStyle</h3>
+        <p>Votre plateforme de connexion entre stylistes talentueux et clients exigeants.</p>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Navigation</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Informations</h3>
+        <ul class="footer-links">
+          <li><a href="#">Conditions générales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">Guide des tailles</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Inscrivez-vous pour recevoir nos dernières offres et nouveautés</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Votre email" required>
+          <button type="submit">OK</button>
+        </form>
+        <div style="margin-top: 1.5rem;">
+          <p><strong>Contact:</strong></p>
+          <p><i class="fas fa-envelope"></i> contact@Aristyle.com</p>
+          <p><i class="fas fa-phone-alt"></i> +237 673 891 549</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 AriStyle - Plateforme de Stylisme Web. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+
+
+</body>
+
+</html>
