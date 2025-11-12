@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation - AriStyle</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .confirmation-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .order-number {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-details {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .shipping-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">AriStyle</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <input type="search" class="search-bar" placeholder="Rechercher...">
+            <div class="nav-icons">
+                <button class="icon-btn" onclick="window.location.href='panier.html'">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+                <button class="icon-btn" onclick="window.location.href='connexion.html'">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Accueil</a>
+        <span>/</span>
+        <a href="panier.html">Panier</a>
+        <span>/</span>
+        <a href="commande.html">Commande</a>
+        <span>/</span>
+        <span>Confirmation</span>
+    </div>
+
+    <div class="confirmation-container">
+        <div class="confirmation-card">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h1 class="confirmation-title">Commande Confirmée !</h1>
+            
+            <div class="order-number" id="order-number">
+                <!-- Le numéro de commande sera ajouté dynamiquement -->
+            </div>
+            
+            <p>Merci pour votre achat ! Votre commande a été traitée avec succès.</p>
+            <p>Vous recevrez un email de confirmation dans quelques instants.</p>
+
+            <div class="confirmation-details">
+                <h3>Résumé de votre commande</h3>
+                <div id="order-summary">
+                    <!-- Les détails de la commande seront ajoutés dynamiquement -->
+                </div>
+            </div>
+
+            <div class="shipping-info">
+                <h3>Informations de livraison</h3>
+                <div id="shipping-details">
+                    <!-- Les informations de livraison seront ajoutées dynamiquement -->
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Retour à l'accueil
+                </a>
+                <a href="collections.html" class="btn btn-secondary">
+                    <i class="fas fa-shopping-bag"></i> Continuer mes achats
+                </a>
+            </div>
+        </div>
+
+        <div class="confirmation-card">
+            <h3>Suivi de commande</h3>
+            <p>Vous pouvez suivre l'état de votre commande dans votre espace client.</p>
+            <p>Temps de livraison estimé : <strong>3-5 jours ouvrables</strong></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AriStyle</h3>
+                <p>Votre plateforme de connexion entre stylistes talentueux et clients exigeants.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="collections.html">Collections</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Informations</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Conditions générales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> contact@aristyle.com</p>
+                <p><i class="fas fa-phone-alt"></i> +237 673 891 549</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AriStyle - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/cart.js"></script>
+    <script>
+        function loadOrderDetails() {
+            // Récupérer les données de la commande depuis localStorage
+            const lastOrder = localStorage.getItem('lastOrder');
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order');
+
+            if (lastOrder) {
+                const order = JSON.parse(lastOrder);
+                
+                // Afficher le numéro de commande
+                document.getElementById('order-number').textContent = `N° de commande: #${orderId || order.id}`;
+                
+                // Afficher le résumé de la commande
+                const orderSummary = document.getElementById('order-summary');
+                let summaryHtml = '';
+                
+                order.items.forEach(item => {
+                    summaryHtml += `
+                        <div class="detail-row">
+                            <span>${item.name} (x${item.quantity})</span>
+                            <span>${formatPrice(item.price * item.quantity)}</span>
+                        </div>
+                    `;
+                });
+                
+                summaryHtml += `
+                    <div class="detail-row" style="font-weight: bold; border-top: 2px solid var(--primary-color);">
+                        <span>Total</span>
+                        <span>${formatPrice(order.total)}</span>
+                    </div>
+                `;
+                
+                orderSummary.innerHTML = summaryHtml;
+                
+                // Récupérer les infos de livraison (simulées)
+                const shippingDetails = document.getElementById('shipping-details');
+                shippingDetails.innerHTML = `
+                    <p><strong>Date de livraison estimée:</strong> ${new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString('fr-FR')}</p>
+                    <p><strong>Mode de livraison:</strong> Livraison Standard</p>
+                    <p><strong>Statut:</strong> En préparation</p>
+                `;
+            } else {
+                // Rediriger si pas de commande trouvée
+                window.location.href = 'index.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrderDetails();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
