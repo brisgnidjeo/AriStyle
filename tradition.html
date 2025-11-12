@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenues Traditionnelles - AriStyle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #1a1a1a;
+            --text-color: #333;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            width: 250px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+        }
+
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #999;
+        }
+
+        .category-hero {
+            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .category-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-section {
+            background: var(--bg-light);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1400px;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .filter-group select {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .product-badge.new {
+            background: #28a745;
+            color: white;
+        }
+
+        .product-badge.promo {
+            background: #dc3545;
+            color: white;
+        }
+
+        .product-badge.authentique {
+            background: #e94560;
+            color: white;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: #999;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: var(--primary-color);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .category-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="../index.html" class="logo">AriStyle</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../collections.html">Collections</a></li>
+                <li><a href="../apropos.html">À propos</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <input type="search" class="search-bar" placeholder="Rechercher...">
+            <div class="nav-icons">
+                <button class="icon-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">3</span>
+                </button>
+                <button class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Accueil</a>
+        <span>/</span>
+        <a href="../collections.html">Collections</a>
+        <span>/</span>
+        <span>Tenues Traditionnelles</span>
+    </div>
+
+    <section class="category-hero">
+        <div>
+            <h1>Tenues Traditionnelles Africaines</h1>
+            <p>Vêtements authentiques et modernes célébrant l'héritage africain</p>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="filter-container">
+            <div class="filter-group">
+                <label>Prix:</label>
+                <select>
+                    <option>Tous les prix</option>
+                    <option>Moins de 40 000 FCFA</option>
+                    <option>40 000 - 70 000 FCFA</option>
+                    <option>70 000 - 100 000 FCFA</option>
+                    <option>Plus de 100 000 FCFA</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Type:</label>
+                <select>
+                    <option>Tous les types</option>
+                    <option>Boubous</option>
+                    <option>Dashiki</option>
+                    <option>Kente</option>
+                    <option>Ankara</option>
+                    <option>Wax</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Genre:</label>
+                <select>
+                    <option>Tous</option>
+                    <option>Homme</option>
+                    <option>Femme</option>
+                    <option>Unisexe</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Occasion:</label>
+                <select>
+                    <option>Toutes occasions</option>
+                    <option>Mariage</option>
+                    <option>Cérémonie</option>
+                    <option>Quotidien</option>
+                    <option>Festival</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-container">
+        <h2 class="section-title">Notre Collection (15 produits)</h2>
+
+        <div class="catalog-grid">
+            <!-- Produit 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition1.jfif" alt="Boubou Grand Homme">
+                    <span class="product-badge authentique">Authentique</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Boubous Homme</div>
+                    <h3 class="product-title">Boubou Grand Homme</h3>
+                    <p class="product-description">Boubou traditionnel brodé main</p>
+                    <div class="product-price">
+                        <span class="current-price">95 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(167 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition2.jfif" alt="Robe Ankara">
+                    <span class="product-badge new">Nouveau</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Ankara Femme</div>
+                    <h3 class="product-title">Robe Ankara Moderne</h3>
+                    <p class="product-description">Robe en tissu Ankara coloré</p>
+                    <div class="product-price">
+                        <span class="current-price">65 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </span>
+                        <span>(198 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition3.jfif" alt="Dashiki Homme">
+                    <span class="product-badge promo">-20%</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Dashiki</div>
+                    <h3 class="product-title">Dashiki Traditionnel</h3>
+                    <p class="product-description">Dashiki authentique imprimé</p>
+                    <div class="product-price">
+                        <span class="current-price">40 000 FCFA</span>
+                        <span class="old-price">50 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(245 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition4.jfif" alt="Ensemble Kente">
+                    <span class="product-badge authentique">Authentique</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Kente</div>
+                    <h3 class="product-title">Ensemble Kente Royal</h3>
+                    <p class="product-description">Tissu Kente fait main</p>
+                    <div class="product-price">
+                        <span class="current-price">120 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(134 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition5.jfif" alt="Caftan Femme">
+                    <span class="product-badge new">Nouveau</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Caftan Femme</div>
+                    <h3 class="product-title">Caftan Élégant</h3>
+                    <p class="product-description">Caftan avec broderies dorées</p>
+                    <div class="product-price">
+                        <span class="current-price">85 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </span>
+                        <span>(156 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition6.jfif" alt="Chemise Wax">
+                    <span class="product-badge promo">-15%</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Wax Homme</div>
+                    <h3 class="product-title">Chemise Wax Tendance</h3>
+                    <p class="product-description">Chemise en tissu wax</p>
+                    <div class="product-price">
+                        <span class="current-price">38 250 FCFA</span>
+                        <span class="old-price">45 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(289 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 7 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition7.jfif" alt="Ensemble Bazin">
+                    <span class="product-badge authentique">Authentique</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Bazin</div>
+                    <h3 class="product-title">Ensemble Bazin Riche</h3>
+                    <p class="product-description">Bazin brodé de qualité</p>
+                    <div class="product-price">
+                        <span class="current-price">110 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(178 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition8.jfif" alt="Jupe Pagne">
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Pagne Femme</div>
+                    <h3 class="product-title">Jupe Pagne Colorée</h3>
+                    <p class="product-description">Jupe en pagne traditionnel</p>
+                    <div class="product-price">
+                        <span class="current-price">45 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </span>
+                        <span>(201 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 9 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition9.jfif" alt="Agbada Complet">
+                    <span class="product-badge new">Nouveau</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Agbada</div>
+                    <h3 class="product-title">Agbada Complet Luxe</h3>
+                    <p class="product-description">Agbada 3 pièces brodé</p>
+                    <div class="product-price">
+                        <span class="current-price">130 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(142 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 10 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition10.jfif" alt="Top Ankara">
+                    <span class="product-badge promo">-25%</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Ankara Femme</div>
+                    <h3 class="product-title">Top Ankara Chic</h3>
+                    <p class="product-description">Haut moderne en Ankara</p>
+                    <div class="product-price">
+                        <span class="current-price">33 750 FCFA</span>
+                        <span class="old-price">45 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </span>
+                        <span>(234 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 11 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition11.jfif" alt="Ensemble Couple">
+                    <span class="product-badge authentique">Authentique</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Ensemble Couple</div>
+                    <h3 class="product-title">Ensemble Couple Assorti</h3>
+                    <p class="product-description">Tenue assortie pour couple</p>
+                    <div class="product-price">
+                        <span class="current-price">150 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(167 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 12 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition12.jfif" alt="Pantalon Wax">
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Wax Homme</div>
+                    <h3 class="product-title">Pantalon Wax Moderne</h3>
+                    <p class="product-description">Pantalon ajusté en wax</p>
+                    <div class="product-price">
+                        <span class="current-price">42 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </span>
+                        <span>(189 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 13 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition13.jfif" alt="Robe Boubou">
+                    <span class="product-badge new">Nouveau</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Boubou Femme</div>
+                    <h3 class="product-title">Robe Boubou Élégante</h3>
+                    <p class="product-description">Boubou femme avec dentelle</p>
+                    <div class="product-price">
+                        <span class="current-price">78 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(215 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 14 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition14.jfif" alt="Veste Kente">
+                    <span class="product-badge promo">-20%</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Kente</div>
+                    <h3 class="product-title">Veste Kente Style</h3>
+                    <p class="product-description">Veste moderne en Kente</p>
+                    <div class="product-price">
+                        <span class="current-price">56 000 FCFA</span>
+                        <span class="old-price">70 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </span>
+                        <span>(176 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 15 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/images/tradition15.jfif" alt="Ensemble Ankara">
+                    <span class="product-badge authentique">Authentique</span>
+                    <div class="product-actions">
+                        <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Ankara</div>
+                    <h3 class="product-title">Ensemble Ankara Complet</h3>
+                    <p class="product-description">Set jupe et haut assorti</p>
+                    <div class="product-price">
+                        <span class="current-price">92 000 FCFA</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>(256 avis)</span>
+                    </div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AriStyle</h3>
+                <p>Votre plateforme de connexion entre stylistes talentueux et clients exigeants.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../collections.html">Collections</a></li>
+                    <li><a href="../apropos.html">À propos</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Informations</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Conditions générales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Guide des tailles</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Inscrivez-vous pour recevoir nos dernières offres</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Votre email" required>
+                    <button type="submit">OK</button>
+                </form>
+                <div style="margin-top: 1.5rem;">
+                    <p><strong>Contact:</strong></p>
+                    <p><i class="fas fa-envelope"></i> contact@aristyle.com</p>
+                    <p><i class="fas fa-phone-alt"></i> +237 673 891 549</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AriStyle - Plateforme de Stylisme Web. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
