@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+
 <body>
   <!-- Header -->
   <header>
@@ -128,5 +129,46 @@
       <p>&copy; 2025 AriStyle - Plateforme de Stylisme Web. Tous droits réservés.</p>
     </div>
   </footer>
+
+  <script src="assets/js/cart.js"></script>
+<script>
+    // Gestion des icônes de navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Gestion de l'icône panier
+        const cartIcon = document.querySelector('.icon-btn .fa-shopping-cart');
+        if (cartIcon) {
+            const cartButton = cartIcon.closest('.icon-btn');
+            cartButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'panier.html';
+            });
+        }
+        
+        // Gestion de l'icône utilisateur
+        const userIcon = document.querySelector('.icon-btn .fa-user');
+        if (userIcon) {
+            const userButton = userIcon.closest('.icon-btn');
+            userButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'connexion.html';
+            });
+        }
+        
+        // Alternative: Gestion de tous les boutons d'icônes
+        document.querySelectorAll('.nav-icons .icon-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-shopping-cart')) {
+                    window.location.href = 'panier.html';
+                } else if (icon.classList.contains('fa-user')) {
+                    window.location.href = 'connexion.html';
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AriStyle - Connexion entre Stylistes et Clients</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
   <!-- Header & Navigation -->
   <header>
     <nav>
-      <a href="#" class="logo">AriStyle</a>
+      <a href="index.html" class="logo">AriStyle</a>
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="collections.html">Collections</a></li>
@@ -22,16 +25,15 @@
       <input type="search" class="search-bar" placeholder="Rechercher...">
 
       <div class="nav-icons">
-        <button class="icon-btn">
+        <button class="icon-btn" onclick="window.location.href='panier.html'">
           <i class="bi bi-cart-fill"></i>
-          <span class="cart-badge">3</span>
+          <span class="cart-badge" id="cart-count">0</span>
         </button>
-        <button class="icon-btn">
+        <button class="icon-btn" onclick="window.location.href='connexion.html'">
           <i class="bi bi-person-circle"></i>
         </button>
       </div>
     </nav>
-
   </header>
 
   <!-- Hero Section -->
@@ -46,12 +48,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Bootstrap Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
-    rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
   <section class="offres">
     <h2 class="section-title">Nos Offres</h2>
@@ -82,15 +78,14 @@
     </div>
   </section>
 
-
-  <!-- ===================== COLLECTIONS EN VEDETTE ===================== -->
+  <!-- Collections en Vedette -->
   <section class="section" id="collections">
     <h2 class="section-title">Collections en Vedette</h2>
 
     <div class="collections-grid">
-
       <!-- Robes de Soirée -->
-      <a href="collections.html#robe" class="collection-card">
+      <div class="collection-card"
+        data-product='{"id": 1, "name": "Robe de Soirée Glamour", "price": 75000, "image": "assets/images/robe1.jfif", "category": "Robes"}'>
         <div class="collection-image">
           <img src="assets/images/robe1.jfif" alt="Robes de Soirée">
           <div class="collection-overlay">Voir Détails</div>
@@ -103,11 +98,15 @@
             <i class="fa-solid fa-circle-check verified"></i>
             <span>128 avis clients vérifiés</span>
           </div>
+          <a href="collections.html" class="btn btn-primary">
+            Découvrir la collection
+          </a>
         </div>
-      </a>
+      </div>
 
       <!-- Costumes -->
-      <a href="collections.html#costume" class="collection-card">
+      <div class="collection-card"
+        data-product='{"id": 2, "name": "Costume Sur Mesure Premium", "price": 155000, "image": "assets/images/costume1.jfif", "category": "Costumes"}'>
         <div class="collection-image">
           <img src="assets/images/costume1.jfif" alt="Costumes Sur Mesure">
           <div class="collection-overlay">Voir Détails</div>
@@ -120,11 +119,15 @@
             <i class="fa-solid fa-circle-check verified"></i>
             <span>95 avis clients vérifiés</span>
           </div>
+          <a href="collections.html" class="btn btn-primary">
+            Découvrir la collection
+          </a>
         </div>
-      </a>
+      </div>
 
       <!-- Tenues Traditionnelles -->
-      <a href="collections.html#traditionnelle" class="collection-card">
+      <div class="collection-card"
+        data-product='{"id": 3, "name": "Boubou Grand Traditionnel", "price": 95000, "image": "assets/images/tradition1.jfif", "category": "Traditionnel"}'>
         <div class="collection-image">
           <img src="assets/images/tradition1.jfif" alt="Tenues Traditionnelles">
           <div class="collection-overlay">Voir Détails</div>
@@ -137,11 +140,15 @@
             <i class="fa-solid fa-circle-check verified"></i>
             <span>156 avis clients vérifiés</span>
           </div>
+          <a href="collections.html" class="btn btn-primary">
+            Découvrir la collection
+          </a>
         </div>
-      </a>
+      </div>
 
       <!-- Mode Casual -->
-      <a href="collections.html#casual" class="collection-card">
+      <div class="collection-card"
+        data-product='{"id": 4, "name": "Jean Slim Confort", "price": 32000, "image": "assets/images/casual1.jfif", "category": "Casual"}'>
         <div class="collection-image">
           <img src="assets/images/casual1.jfif" alt="Mode Casual">
           <div class="collection-overlay">Voir Détails</div>
@@ -154,13 +161,13 @@
             <i class="fa-solid fa-circle-check verified"></i>
             <span>203 avis clients vérifiés</span>
           </div>
+          <a href="collections.html" class="btn btn-primary">
+            Découvrir la collection
+          </a>
         </div>
-      </a>
-
+      </div>
     </div>
   </section>
-
-
 
   <!-- Footer -->
   <footer id="contact">
@@ -215,8 +222,11 @@
     </div>
   </footer>
 
-
-
+  <script src="assets/js/cart.js"></script>
+  <script>
+    // Initialiser le compteur du panier au chargement
+    updateCartCount();
+  </script>
 </body>
 
 </html>

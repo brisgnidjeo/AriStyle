@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier - AriStyle</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        .cart-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cart-header h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .cart-items {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--light-text);
+        }
+
+        .cart-empty i {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: var(--border-color);
+        }
+
+        .cart-empty h2 {
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto auto;
+            gap: 20px;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details h3 {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        .cart-item-details .category {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .quantity-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            padding: 5px;
+        }
+
+        .remove-btn:hover {
+            color: #c82333;
+            transform: scale(1.1);
+        }
+
+        .cart-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .cart-summary h2 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-row.discount {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .summary-row.total {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-top: 2px solid var(--primary-color);
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .discount-info {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover:not(:disabled) {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .checkout-btn:disabled {
+            background: var(--border-color);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .continue-shopping {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .continue-shopping a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .item-total {
+            font-weight: 600;
+            color: var(--text-color);
+            text-align: right;
+        }
+
+        .mobile-quantity {
+            display: none;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #adb5bd;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 10px;
+        }
+
+        @media (max-width: 968px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cart-item {
+                grid-template-columns: 80px 1fr auto;
+                gap: 15px;
+            }
+
+            .quantity-controls {
+                grid-column: 1 / -1;
+                justify-content: flex-start;
+                margin-top: 10px;
+            }
+
+            .desktop-quantity {
+                display: none;
+            }
+
+            .mobile-quantity {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .cart-item-price {
+                text-align: right;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-items {
+                padding: 20px;
+            }
+
+            .cart-item {
+                grid-template-columns: 60px 1fr auto;
+                gap: 10px;
+                padding: 15px 0;
+            }
+
+            .cart-item-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .cart-item-details h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">AriStyle</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <input type="search" class="search-bar" placeholder="Rechercher...">
+            <div class="nav-icons">
+                <a href="panier.html" class="icon-btn" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </a>
+                <a href="connexion.html" class="icon-btn" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Accueil</a>
+        <span>/</span>
+        <span>Panier</span>
+    </div>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h1><i class="fas fa-shopping-cart"></i> Mon Panier</h1>
+            <p>Vérifiez vos articles avant de passer commande</p>
+        </div>
+
+        <div class="cart-items">
+            <div id="cart-items-container">
+                <!-- Les articles du panier seront ajoutés dynamiquement ici -->
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <h2>Récapitulatif</h2>
+            
+            <div id="cart-summary-content">
+                <!-- Le résumé sera ajouté dynamiquement -->
+            </div>
+
+            <div class="discount-info" id="discount-message" style="display: none;">
+                <i class="fas fa-tag"></i>
+                <span id="discount-text"></span>
+            </div>
+
+            <button class="checkout-btn" id="checkout-btn" disabled>
+                <i class="fas fa-lock"></i> Passer la commande
+            </button>
+
+            <div class="continue-shopping">
+                <a href="collections.html">
+                    <i class="fas fa-arrow-left"></i> Continuer mes achats
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AriStyle</h3>
+                <p>Votre plateforme de connexion entre stylistes talentueux et clients exigeants.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="collections.html">Collections</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Informations</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Conditions générales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> contact@aristyle.com</p>
+                <p><i class="fas fa-phone-alt"></i> +237 673 891 549</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AriStyle - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/cart.js"></script>
+    <script>
+        // Fonction pour corriger les chemins d'images
+        function fixImagePath(imagePath) {
+            if (!imagePath) return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2U8L3RleHQ+PC9zdmc+';
+            
+            // Si le chemin commence déjà par ../, on le garde
+            if (imagePath.startsWith('../')) {
+                return imagePath;
+            }
+            
+            // Si le chemin commence par assets/, on ajoute ../
+            if (imagePath.startsWith('assets/')) {
+                return '../' + imagePath;
+            }
+            
+            // Si le chemin commence par /, on le garde
+            if (imagePath.startsWith('/')) {
+                return imagePath;
+            }
+            
+            // Par défaut, on suppose que l'image est dans assets/images
+            return '../assets/images/' + imagePath;
+        }
+
+        // Fonction pour afficher le contenu du panier
+        function displayCart() {
+            const cartContainer = document.getElementById('cart-items-container');
+            const summaryContainer = document.getElementById('cart-summary-content');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const discountMessage = document.getElementById('discount-message');
+            
+            console.log('Articles dans le panier:', panierGlobal.items);
+            
+            if (panierGlobal.items.length === 0) {
+                cartContainer.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Votre panier est vide</h2>
+                        <p>Découvrez nos collections et trouvez des articles qui vous plaisent !</p>
+                        <a href="collections.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px;">
+                            Découvrir les collections
+                        </a>
+                    </div>
+                `;
+                
+                summaryContainer.innerHTML = `
+                    <div class="summary-row">
+                        <span>Sous-total</span>
+                        <span>0 FCFA</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Livraison</span>
+                        <span>Gratuite</span>
+                    </div>
+                    <div class="summary-row discount">
+                        <span>Remise</span>
+                        <span>0 FCFA</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span>0 FCFA</span>
+                    </div>
+                `;
+                
+                checkoutBtn.disabled = true;
+                discountMessage.style.display = 'none';
+                return;
+            }
+
+            // Afficher les articles du panier
+            let cartHtml = '';
+            panierGlobal.items.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                const fixedImagePath = fixImagePath(item.image);
+                
+                console.log('Article:', item.name, 'Image path:', item.image, 'Fixed path:', fixedImagePath);
+                
+                cartHtml += `
+                    <div class="cart-item" data-product-id="${item.id}">
+                        <div class="cart-item-image">
+                            <img src="${fixedImagePath}" alt="${item.name}" 
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2U8L3RleHQ+PC9zdmc+'; this.nextElementSibling.style.display='flex'">
+                            <div class="image-placeholder" style="display: none;">
+                                <div>${item.name}</div>
+                            </div>
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <div class="category">${item.category}</div>
+                            <div class="mobile-quantity">
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            </div>
+                        </div>
+                        <div class="cart-item-price">
+                            ${formatPrice(item.price)}
+                        </div>
+                        <div class="quantity-controls desktop-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="item-total">
+                            ${formatPrice(itemTotal)}
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${item.id})" title="Supprimer">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartContainer.innerHTML = cartHtml;
+
+            // Afficher le résumé
+            const subtotal = panierGlobal.getTotal();
+            const discount = panierGlobal.getDiscount();
+            const total = panierGlobal.getFinalTotal();
+            
+            summaryContainer.innerHTML = `
+                <div class="summary-row">
+                    <span>Sous-total (${panierGlobal.getItemCount()} article${panierGlobal.getItemCount() > 1 ? 's' : ''})</span>
+                    <span>${formatPrice(subtotal)}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Livraison</span>
+                    <span>Gratuite</span>
+                </div>
+                <div class="summary-row discount">
+                    <span>Remise</span>
+                    <span>-${formatPrice(discount)}</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>${formatPrice(total)}</span>
+                </div>
+            `;
+
+            // Afficher le message de réduction si applicable
+            if (discount > 0) {
+                const discountText = document.getElementById('discount-text');
+                discountText.textContent = `Félicitations ! Vous bénéficiez d'une remise de ${formatPrice(discount)}`;
+                discountMessage.style.display = 'block';
+            } else {
+                discountMessage.style.display = 'none';
+            }
+
+            // Activer le bouton de commande
+            checkoutBtn.disabled = false;
+        }
+
+        // Fonction pour mettre à jour la quantité
+        function updateQuantity(productId, newQuantity) {
+            panierGlobal.modifierQuantite(productId, newQuantity);
+            displayCart();
+        }
+
+        // Fonction pour supprimer un article
+        function removeFromCart(productId) {
+            if (confirm('Êtes-vous sûr de vouloir retirer cet article du panier ?')) {
+                panierGlobal.supprimerProduit(productId);
+                displayCart();
+            }
+        }
+
+        // Fonction pour vider le panier
+        function clearCart() {
+            if (confirm('Êtes-vous sûr de vouloir vider tout votre panier ?')) {
+                panierGlobal.viderPanier();
+                displayCart();
+            }
+        }
+
+        // Redirection vers la page de commande
+        function proceedToCheckout() {
+            if (panierGlobal.items.length > 0) {
+                window.location.href = 'commande.html';
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCart();
+            updateCartCount();
+            
+            // Écouteurs d'événements
+            document.getElementById('checkout-btn').addEventListener('click', proceedToCheckout);
+        });
+    </script>
+</body>
+</html>

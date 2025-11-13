@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mode Casual - AriStyle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #d4af37;
+      --secondary-color: #1a1a1a;
+      --text-color: #333;
+      --bg-light: #f8f9fa;
+      --border-color: #e0e0e0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: var(--bg-light);
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .search-bar {
+      padding: .5rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 25px;
+      width: 240px;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: .7rem;
+      align-items: center;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      position: relative;
+      color: var(--text-color);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #dc3545;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: .65rem;
+    }
+
+    .breadcrumb {
+      max-width: 1400px;
+      margin: 1.5rem auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      font-size: .95rem;
+    }
+
+    .breadcrumb a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .category-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3.2rem 1.2rem;
+      text-align: center;
+      border-radius: 8px;
+      margin: 0 2rem;
+    }
+
+    .category-hero h1 {
+      font-size: 2.4rem;
+      margin-bottom: .4rem;
+    }
+
+    .filter-section {
+      background: white;
+      padding: 1.2rem;
+      margin: 1.6rem auto;
+      max-width: 1400px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+    }
+
+    .filter-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .filter-group label {
+      font-weight: 600;
+      font-size: .9rem;
+    }
+
+    .filter-group select {
+      padding: .5rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .products-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.6rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      transition: transform .25s, box-shadow .25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+      background: linear-gradient(180deg, #f4f4f4, #e9e9e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s;
+      display: block;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.06);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: .45rem .75rem;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .product-badge.new {
+      background: #28a745;
+      color: white;
+    }
+
+    .product-badge.promo {
+      background: #dc3545;
+      color: white;
+    }
+
+    .product-actions {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .product-card:hover .product-actions {
+      opacity: 1;
+    }
+
+    .action-btn {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .action-btn:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1rem 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      flex: 1;
+    }
+
+    .product-category {
+      color: #888;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-title {
+      font-size: 1.05rem;
+      color: var(--secondary-color);
+    }
+
+    .product-description {
+      color: #666;
+      font-size: .9rem;
+      margin-bottom: .4rem;
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .4rem;
+    }
+
+    .current-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .old-price {
+      color: #999;
+      text-decoration: line-through;
+      font-size: .95rem;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .88rem;
+      color: #777;
+    }
+
+    .stars {
+      color: var(--primary-color);
+    }
+
+    .add-to-cart {
+      margin-top: auto;
+      width: 100%;
+      padding: .65rem;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all .18s;
+    }
+
+    .add-to-cart:hover {
+      background: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.18);
+    }
+
+    footer {
+      background: var(--secondary-color);
+      color: white;
+      padding: 3rem 2rem 1rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      line-height: 2;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: .75rem;
+      margin-top: .5rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all .2s;
+    }
+
+    .social-icon:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: .5rem;
+      margin-top: .6rem;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: .7rem;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .newsletter-form button {
+      padding: .7rem 1rem;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 900px) {
+      .search-bar {
+        display: none;
+      }
+
+      .category-hero h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      nav {
+        padding: .8rem 1rem;
+      }
+
+      .product-image {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="../index.html" class="logo">AriStyle</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../collections.html">Collections</a></li>
+        <li><a href="../apropos.html">À propos</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <input type="search" class="search-bar" placeholder="Rechercher...">
+      <div class="nav-icons">
+        <button class="icon-btn" onclick="window.location.href='../panier.html'">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+        <button class="icon-btn" onclick="window.location.href='../connexion.html'">
+          <i class="fas fa-user"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="../index.html">Accueil</a><span>/</span>
+    <a href="../collections.html">Collections</a><span>/</span>
+    <span>Mode Casual</span>
+  </div>
+
+  <section class="category-hero">
+    <div>
+      <h1>Mode Casual Confort</h1>
+      <p>Vêtements confortables et tendance pour le quotidien</p>
+    </div>
+  </section>
+
+  <section class="filter-section" aria-label="Filtres">
+    <div class="filter-container">
+      <div class="filter-group">
+        <label for="prix">Prix:</label>
+        <select id="filter-price">
+          <option value="all">Tous les prix</option>
+          <option value="0-15000">Moins de 15 000 FCFA</option>
+          <option value="15000-30000">15 000 - 30 000 FCFA</option>
+          <option value="30000-50000">30 000 - 50 000 FCFA</option>
+          <option value="50000-999999">Plus de 50 000 FCFA</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="categorie">Catégorie:</label>
+        <select id="filter-category">
+          <option value="all">Toutes catégories</option>
+          <option value="T-shirts">T-shirts</option>
+          <option value="Jeans">Jeans</option>
+          <option value="Chemises">Chemises</option>
+          <option value="Pulls">Pulls</option>
+          <option value="Vestes">Vestes</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="taille">Taille:</label>
+        <select id="filter-size">
+          <option value="all">Toutes les tailles</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="couleur">Couleur:</label>
+        <select id="filter-color">
+          <option value="all">Toutes les couleurs</option>
+          <option value="Blanc">Blanc</option>
+          <option value="Noir">Noir</option>
+          <option value="Bleu">Bleu</option>
+          <option value="Vert">Vert</option>
+          <option value="Rouge">Rouge</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Trier par:</label>
+        <select id="sort-products">
+          <option value="default">Par défaut</option>
+          <option value="price-asc">Prix croissant</option>
+          <option value="price-desc">Prix décroissant</option>
+          <option value="name">Nom A-Z</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-container" aria-label="Produits">
+    <h2 class="section-title">Notre Collection (<span id="product-count">20</span> produits)</h2>
+    <div class="catalog-grid" id="products-grid">
+      <!-- Les produits seront chargés par JavaScript -->
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>AriStyle</h3>
+        <p>La mode casual, chic et tendance à portée de main. AriStyle vous habille pour chaque instant.</p>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Liens rapides</h3>
+        <ul class="footer-links">
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="../collections.html">Collections</a></li>
+          <li><a href="../apropos.html">À propos</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Assistance</h3>
+        <ul class="footer-links">
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Inscrivez-vous pour recevoir nos dernières nouveautés.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Votre email" required />
+          <button type="submit">S'inscrire</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 AriStyle. Tous droits réservés. | Design par <strong>AriStyle Web</strong></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/cart.js"></script>
+  <script>
+    // Données des produits casual
+    const produitsCasual = [
+      {
+        id: 8,
+        name: "Jean Slim Stretch",
+        price: 32000,
+        image: "../assets/images/casual1.jfif",
+        category: "Mode Casual",
+        description: "Jean confortable bleu foncé stretch",
+        badge: "new"
+      },
+      {
+        id: 9,
+        name: "T-shirt Classique",
+        price: 24000,
+        image: "../assets/images/casual2.jfif",
+        category: "Mode Casual",
+        description: "T-shirt en coton doux et respirant",
+        badge: "promo",
+        oldPrice: 30000
+      },
+      {
+        id: 32,
+        name: "Chemise Décontractée",
+        price: 38000,
+        image: "../assets/images/casual3.jfif",
+        category: "Mode Casual",
+        description: "Chemise en lin blanc élégante"
+      },
+      {
+        id: 33,
+        name: "Pull Col Rond",
+        price: 45000,
+        image: "../assets/images/casual4.jfif",
+        category: "Mode Casual",
+        description: "Pull en laine mérinos confortable",
+        badge: "new"
+      },
+      {
+        id: 34,
+        name: "Veste Légère Coupe-vent",
+        price: 51000,
+        image: "../assets/images/casual5.jfif",
+        category: "Mode Casual",
+        description: "Veste coupe-vent pratique et stylée",
+        badge: "promo",
+        oldPrice: 60000
+      },
+      {
+        id: 35,
+        name: "Polo Sport",
+        price: 27000,
+        image: "../assets/images/casual6.jfif",
+        category: "Mode Casual",
+        description: "Polo respirant pour activités sportives"
+      },
+      {
+        id: 36,
+        name: "Jogging Confort",
+        price: 25000,
+        image: "../assets/images/casual7.jfif",
+        category: "Mode Casual",
+        description: "Pantalon doux et respirant quotidien",
+        badge: "new"
+      },
+      {
+        id: 37,
+        name: "Short Denim",
+        price: 19000,
+        image: "../assets/images/casual8.jfif",
+        category: "Mode Casual",
+        description: "Short classique en jean décontracté"
+      },
+      {
+        id: 38,
+        name: "Sweat à Capuche",
+        price: 36000,
+        image: "../assets/images/casual9.jfif",
+        category: "Mode Casual",
+        description: "Sweat molletonné doux et chaud",
+        badge: "promo",
+        oldPrice: 40000
+      },
+      {
+        id: 39,
+        name: "Cardigan Léger",
+        price: 34000,
+        image: "../assets/images/casual10.jfif",
+        category: "Mode Casual",
+        description: "Cardigan en coton doux printanier",
+        badge: "new"
+      },
+      {
+        id: 40,
+        name: "T-shirt Oversize",
+        price: 22000,
+        image: "../assets/images/casual11.jfif",
+        category: "Mode Casual",
+        description: "Style urbain moderne et confortable"
+      },
+      {
+        id: 41,
+        name: "Jean Délavé",
+        price: 33000,
+        image: "../assets/images/casual12.jfif",
+        category: "Mode Casual",
+        description: "Jean bleu clair effet usé tendance"
+      },
+      {
+        id: 42,
+        name: "Chemise à Carreaux",
+        price: 28000,
+        image: "../assets/images/casual13.jfif",
+        category: "Mode Casual",
+        description: "Style décontracté chic et casual"
+      },
+      {
+        id: 43,
+        name: "Blouson en Jean",
+        price: 49000,
+        image: "../assets/images/casual14.jfif",
+        category: "Mode Casual",
+        description: "Classique revisité pour look casual"
+      },
+      {
+        id: 44,
+        name: "T-shirt Graphique",
+        price: 24000,
+        image: "../assets/images/casual15.jfif",
+        category: "Mode Casual",
+        description: "Imprimé original style streetwear"
+      },
+      {
+        id: 45,
+        name: "Sweat Zippé",
+        price: 37000,
+        image: "../assets/images/casual16.jfif",
+        category: "Mode Casual",
+        description: "Style sport urbain pratique"
+      },
+      {
+        id: 46,
+        name: "Veste Cargo",
+        price: 53000,
+        image: "../assets/images/casual17.jfif",
+        category: "Mode Casual",
+        description: "Polyvalente et légère multi-poches"
+      },
+      {
+        id: 47,
+        name: "Jogging Street",
+        price: 26000,
+        image: "../assets/images/casual18.jfif",
+        category: "Mode Casual",
+        description: "Mode urbaine confortable"
+      },
+      {
+        id: 48,
+        name: "Chemise Bleu Ciel",
+        price: 30000,
+        image: "../assets/images/casual19.jfif",
+        category: "Mode Casual",
+        description: "Tissu respirant et doux casual"
+      },
+      {
+        id: 49,
+        name: "Polo Élégant",
+        price: 29000,
+        image: "../assets/images/casual20.jfif",
+        category: "Mode Casual",
+        description: "Coupe ajustée classique décontractée"
+      }
+    ];
+
+    // Fonction pour afficher les produits
+    function afficherProduits(produitsAAfficher = produitsCasual) {
+      const productsGrid = document.getElementById('products-grid');
+      const productCount = document.getElementById('product-count');
+
+      productsGrid.innerHTML = '';
+      productCount.textContent = produitsAAfficher.length;
+
+      produitsAAfficher.forEach(produit => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        let badgeText = '';
+        if (produit.badge === 'new') badgeText = 'Nouveau';
+        if (produit.badge === 'promo') {
+          const reduction = Math.round((1 - produit.price / produit.oldPrice) * 100);
+          badgeText = `-${reduction}%`;
+        }
+
+        productCard.innerHTML = `
+          <div class="product-image">
+            <img src="${produit.image}" alt="${produit.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2U8L3RleHQ+PC9zdmc+'">
+            ${produit.badge ? `<span class="product-badge ${produit.badge}">${badgeText}</span>` : ''}
+            <div class="product-actions">
+              <a href="#" class="action-btn"><i class="fa-regular fa-heart"></i></a>
+              <a href="#" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-category">${produit.category}</div>
+            <h3 class="product-title">${produit.name}</h3>
+            <p class="product-description">${produit.description}</p>
+            <div class="product-price">
+              <span class="current-price">${formatPrice(produit.price)}</span>
+              ${produit.oldPrice ? `<span class="old-price">${formatPrice(produit.oldPrice)}</span>` : ''}
+            </div>
+            <div class="product-rating">
+              <span class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>(98 avis)</span>
+            </div>
+            <button class="add-to-cart" onclick="ajouterProduitCasual(${produit.id})">Ajouter au panier</button>
+          </div>
+        `;
+
+        productsGrid.appendChild(productCard);
+      });
+    }
+
+    // Fonction pour ajouter un produit au panier
+    function ajouterProduitCasual(productId) {
+      const produit = produitsCasual.find(p => p.id === productId);
+      if (produit) {
+        ajouterAuPanier(produit);
+      }
+    }
+
+    // Filtrage des produits
+    function filtrerEtTrierProduits() {
+      const prixFilter = document.getElementById('filter-price').value;
+      const categoryFilter = document.getElementById('filter-category').value;
+      const sizeFilter = document.getElementById('filter-size').value;
+      const colorFilter = document.getElementById('filter-color').value;
+      const sortOption = document.getElementById('sort-products').value;
+
+      let produitsFiltres = [...produitsCasual];
+
+      // Filtrage par prix
+      if (prixFilter !== 'all') {
+        const [min, max] = prixFilter.split('-').map(Number);
+        produitsFiltres = produitsFiltres.filter(p => p.price >= min && p.price <= max);
+      }
+
+      // Tri
+      switch (sortOption) {
+        case 'price-asc':
+          produitsFiltres.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-desc':
+          produitsFiltres.sort((a, b) => b.price - a.price);
+          break;
+        case 'name':
+          produitsFiltres.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+      }
+
+      afficherProduits(produitsFiltres);
+    }
+    // Gestion spécifique de l'icône panier pour cette page
+    document.addEventListener('DOMContentLoaded', function () {
+      // Mettre à jour le compteur
+      updateCartCount();
+
+      // Gestion spécifique de l'icône panier
+      const cartIconBtn = document.getElementById('cart-icon-btn');
+      if (cartIconBtn) {
+        cartIconBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.location.href = '../panier.html';
+        });
+      }
+
+      // Gestion des autres icônes panier
+      document.querySelectorAll('.icon-btn').forEach(btn => {
+        const hasCartIcon = btn.querySelector('.fa-shopping-cart, .bi-cart-fill');
+        if (hasCartIcon && !btn.id) {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = '../panier.html';
+          });
+        }
+      });
+    });
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function () {
+      afficherProduits();
+
+      // Écouteurs pour les filtres
+      document.getElementById('filter-price').addEventListener('change', filtrerEtTrierProduits);
+      document.getElementById('filter-category').addEventListener('change', filtrerEtTrierProduits);
+      document.getElementById('filter-size').addEventListener('change', filtrerEtTrierProduits);
+      document.getElementById('filter-color').addEventListener('change', filtrerEtTrierProduits);
+      document.getElementById('sort-products').addEventListener('change', filtrerEtTrierProduits);
+    });
+  </script>
+</body>
+
+</html>
