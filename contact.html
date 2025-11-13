@@ -359,7 +359,38 @@
         </div>
     </footer>
 
-
+    <script src="assets/js/cart.js"></script>
+<script>
+    // Gestion des icônes de navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Solution universelle pour contact.html
+        document.querySelectorAll('.nav-icons .icon-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Vérifier quelle icône est cliquée
+                const icon = this.querySelector('i');
+                const iconClasses = icon.className;
+                
+                console.log('Icône cliquée:', iconClasses);
+                
+                if (iconClasses.includes('cart') || iconClasses.includes('shopping-cart')) {
+                    // Icône panier
+                    window.location.href = 'panier.html';
+                } else if (iconClasses.includes('user') || iconClasses.includes('person')) {
+                    // Icône utilisateur
+                    window.location.href = 'connexion.html';
+                }
+            });
+        });
+        
+        // Vérification que les écouteurs sont bien attachés
+        console.log('Écouteurs d\'événements attachés pour', document.querySelectorAll('.nav-icons .icon-btn').length, 'boutons');
+    });
+</script>
 
 </body>
 
