@@ -205,6 +205,46 @@
         </div>
     </footer>
 
+    <script src="assets/js/cart.js"></script>
+<script>
+    // Gestion des icônes de navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Gestion des icônes Bootstrap
+        const cartIcon = document.querySelector('.bi-cart-fill');
+        if (cartIcon) {
+            const cartButton = cartIcon.closest('.icon-btn');
+            cartButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'panier.html';
+            });
+        }
+        
+        const userIcon = document.querySelector('.bi-person-circle');
+        if (userIcon) {
+            const userButton = userIcon.closest('.icon-btn');
+            userButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'connexion.html';
+            });
+        }
+        
+        // Solution alternative pour tous les boutons
+        document.querySelectorAll('.nav-icons .icon-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('bi-cart-fill') || icon.classList.contains('fa-shopping-cart')) {
+                    window.location.href = 'panier.html';
+                } else if (icon.classList.contains('bi-person-circle') || icon.classList.contains('fa-user')) {
+                    window.location.href = 'connexion.html';
+                }
+            });
+        });
+    });
+</script>
+
 
 </body>
 
